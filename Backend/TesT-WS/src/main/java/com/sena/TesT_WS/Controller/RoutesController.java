@@ -30,4 +30,9 @@ public class RoutesController extends ABaseController<Routes, IRoutesService>{
     public List<Routes> findByDepartureairport(@RequestParam String departureairport) {
         return routesService.findByDepartureairportContainingIgnoreCase(departureairport);
     }
+	
+	@GetMapping("/destino")
+    public List<Routes> findByArrivalairport(@RequestParam String arrivalairport) {
+        return routesService.findByDepartureairportContainingIgnoreCase(arrivalairport);
+    }
 }

@@ -1,5 +1,7 @@
 package com.sena.TesT_WS.Service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +20,12 @@ public class CabinTypesService extends ABaseService<CabinTypes> implements ICabi
 	protected IBaseRepository<CabinTypes, Long> getRepository() {
 		// TODO Auto-generated method stub
 		return repositiry;
+	}
+
+	@Override
+	public List<CabinTypes> findByNameContainingIgnoreCase(String name) {
+		// TODO Auto-generated method stub
+		return repositiry.findByNameContainingIgnoreCase(name);
 	}
 
 	

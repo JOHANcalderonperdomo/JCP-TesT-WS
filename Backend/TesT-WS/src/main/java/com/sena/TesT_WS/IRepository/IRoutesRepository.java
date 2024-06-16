@@ -17,5 +17,5 @@ public interface IRoutesRepository extends IBaseRepository<Routes, Long>{
     List<Routes> findByDepartureairportContainingIgnoreCase(@Param("departureairport") String departureairport);
 	
 	@Query("SELECT r FROM Routes r WHERE LOWER(r.arrivalairport.name) LIKE LOWER(CONCAT('%', :arrivalairport, '%'))")
-    List<Routes> findByArrivalairportContainingIgnoreCase(@Param("departureairport") String departureairport);
+    List<Routes> findByArrivalairportContainingIgnoreCase(@Param("arrivalairport") String arrivalairport);
 }

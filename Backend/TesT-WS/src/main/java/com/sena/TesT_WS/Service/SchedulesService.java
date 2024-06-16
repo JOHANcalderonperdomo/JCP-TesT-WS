@@ -1,5 +1,8 @@
 package com.sena.TesT_WS.Service;
 
+import java.sql.Date;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +21,12 @@ public class SchedulesService extends ABaseService<Schedules> implements ISchedu
 	protected IBaseRepository<Schedules, Long> getRepository() {
 		// TODO Auto-generated method stub
 		return repository;
+	}
+
+	@Override
+	public List<Schedules> findByDate(Date date) {
+		// TODO Auto-generated method stub
+		return repository.findByDate(date);
 	}
 
 	
