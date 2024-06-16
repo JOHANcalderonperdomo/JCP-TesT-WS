@@ -11,44 +11,45 @@ import jakarta.persistence.Table;
 @Table(name="tickets")
 public class Tickets extends AbaseEntity{
 	
-	@Column(name="firstname", length = 45, nullable = false)
+	@Column(name="firstname", length = 45, nullable = true)
 	private String firstname;
 	
-	@Column(name="lastname", length = 45, nullable = false)
+	@Column(name="lastname", length = 45, nullable = true)
 	private String lastname;
 	
-	@Column(name="email", length = 45, nullable = false)
+	@Column(name="email", length = 45, nullable = true)
 	private String email;
 	
-	@Column(name="phone", length = 45, nullable = false)
+	@Column(name="phone", length = 45, nullable = true)
 	private String phone;
 	
-	@Column(name="passportnumber", length = 45, nullable = false)
+	@Column(name="passportnumber", length = 45, nullable = true)
 	private String passportnumber;
 	
-	@Column(name="passportphoto", length = 45, nullable = false)
+	@Column(name="passportphoto", length = 45, nullable = true)
 	private String passportphoto;
 	
-	@Column(name="bookingreference", length = 45, nullable = false)
+	@Column(name="bookingreference", length = 45, nullable = true)
 	private String bookingreference;
 	
-	@Column(name="confirmed", length = 45, nullable = false)
+	@Column(name="confirmed", length = 45, nullable = true)
 	private String confirmed;
 	
-	@Column(name="passportcountry", length = 45, nullable = false)
-	private String passportcountry;
-	
-	@ManyToOne(fetch = FetchType.EAGER, optional = false)
-	@JoinColumn(name="user", nullable = false)
+	@ManyToOne(fetch = FetchType.EAGER, optional = true)
+	@JoinColumn(name="user", nullable = true)
 	public Users user;
 	
-	@ManyToOne(fetch = FetchType.EAGER, optional = false)
-	@JoinColumn(name="schedules", nullable = false)
+	@ManyToOne(fetch = FetchType.EAGER, optional = true)
+	@JoinColumn(name="schedules", nullable = true)
 	public Schedules schedules;
 	
-	@ManyToOne(fetch = FetchType.EAGER, optional = false)
-	@JoinColumn(name="cabintypes", nullable = false)
+	@ManyToOne(fetch = FetchType.EAGER, optional = true)
+	@JoinColumn(name="cabintypes", nullable = true)
 	public CabinTypes cabintypes;
+	
+	@ManyToOne(fetch = FetchType.EAGER, optional = true)
+	@JoinColumn(name="countries", nullable = true)
+	public Countries countries;
 	
 
 	public String getFirstname() {
@@ -139,11 +140,13 @@ public class Tickets extends AbaseEntity{
 		this.cabintypes = cabintypes;
 	}
 
-	public String getPassportcountry() {
-		return passportcountry;
+	public Countries getCountries() {
+		return countries;
 	}
 
-	public void setPassportcountry(String passportcountry) {
-		this.passportcountry = passportcountry;
+	public void setCountries(Countries countries) {
+		this.countries = countries;
 	}
+
+	
 }

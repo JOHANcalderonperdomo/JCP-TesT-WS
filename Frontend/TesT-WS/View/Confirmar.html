@@ -7,6 +7,7 @@
     <title>Detalles del Vuelo</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../assets/css/Confirmar.css">
+    <link rel="stylesheet" href="../assets/css/estyle.css">
 </head>
 
 <body>
@@ -47,50 +48,44 @@
         <h4>Datos del pasajero</h4>
         <div class="card mb-4">
             <div class="card-body">
-                <form>
+                <form id="passengerForm">
                     <div class="form-row">
                         <div class="form-group col-md-3">
-                            <label from="nombres_id">Nombres</label>
-                                <input type="hidden" id="selected_nombres_id" name="selected_nombres_id" value="">
-                                <input type="text" list="nombres_id" class="form-control" name="nombres_id"
-                                    id="nombres_id">
-                            </div>
-                            <div class="form-group col-md-3">
-                                <label from="apellidos_id">Apellidos</label>
-                                <input type="hidden" id="selected_apellidos_id" name="selected_apellidos_id" value="">
-                                <input type="text" list="apellios_id" class="form-control" name="apellido_id"
-                                    id="apellido_id">
-                            </div>
-                            <div class="form-group col-md-3">
-                                <label for="fechaNacimiento">Fecha de nacimiento</label>
-                                <input type="date" class="form-control" id="fechaNacimiento" placeholder="[dd/mm/yyyy]">
-                            </div>
-                            <div class="form-group col-md-3">
-                                <label for="telefono">Teléfono</label>
-                                <input type="text" class="form-control" id="telefono" placeholder="">
-                            </div>
+                            <label for="nombre">Nombre</label>
+                            <input type="text" class="form-control" id="nombre">
                         </div>
-                        <div class="form-row">
-                            <div class="form-group col-md-3">
-                                <label for="numeroPasaporte">Número Pasaporte</label>
-                                <input type="text" class="form-control" id="numeroPasaporte">
-                            </div>
-                            <div class="form-group col-md-3">
-                                <label from="pais_id">Pais</label>
-                                <input type="hidden" id="selected_pais_id" name="selected_pais_id" value="">
-                                <input type="text" list="pais_id" class="form-control" name="pais_id"
-                                    id="pais_id">
-                            </div>
-                            </div>
-                            <div class="form-group col-md-3">
-                                <label for="fotoPasaporte">Foto Pasaporte</label>
-                                <input type="file" class="form-control-file" id="fotoPasaporte" name="ticketId">
-                                <small>foto_pasaporte.jpg</small>
-                            </div>
-                            <div class="form-group col-md-3 d-flex align-items-end">
-                                <button type="button" class="btn btn-primary">Agregar Pasajero</button>
-                            </div>
+                        <div class="form-group col-md-3">
+                            <label for="apellido">Apellido</label>
+                            <input type="text" class="form-control" id="apellido">
                         </div>
+                        <div class="form-group col-md-3">
+                            <label for="fechaNacimiento">Fecha de nacimiento</label>
+                            <input type="date" class="form-control" id="fechaNacimiento" placeholder="[dd/mm/yyyy]">
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="telefono">Teléfono</label>
+                            <input type="text" class="form-control" id="telefono" placeholder="">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-3">
+                            <label for="numeroPasaporte">Número Pasaporte</label>
+                            <input type="text" class="form-control" id="numeroPasaporte">
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label from="countries_id">Pais</label>
+                            <input type="hidden" id="selected_countries_id" name="selected_countries_id" value="">
+                            <input type="text" list="countries_id" class="form-control" name="countries_id" id="countries_id">
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="fotoPasaporte">Foto Pasaporte</label>
+                            <input type="file" class="form-control-file" id="fotoPasaporte" name="fotoPasaporte">
+                            <small>foto_pasaporte.jpg</small>
+                        </div>
+                        <div class="form-group col-md-3 d-flex align-items-end">
+                            <button type="button" class="btn btn-primary" onclick="save()">Agregar Pasajero</button>
+                        </div>
+                    </div>
                 </form>
             </div>
         </div>
@@ -108,11 +103,12 @@
                     <th>Foto Pasaporte</th>
                 </tr>
             </thead>
-
-            <td><button class="btn btn-link">Ver pasaporte</button></td>
+            <tbody id="listaPasajeros">
+                <!-- Aquí se agregarán las filas dinámicamente -->
+            </tbody>
         </table>
         <div class="d-flex justify-content-between">
-            <button type="button" class="btn btn-danger">Eliminar Pasajero</button>
+            <button type="button" class="btn btn-danger" id="eliminarPasajeroBtn">Eliminar Pasajero</button>
             <div>
                 <button type="button" class="btn btn-secondary">Regresar a buscar vuelos</button>
                 <button type="button" class="btn btn-success">Confirmar Reserva</button>
@@ -120,9 +116,14 @@
         </div>
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <!-- Carga la versión completa de jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Carga tus scripts después de jQuery -->
+    <script src="../JS/Confirmar.js"></script>
 </body>
 
 </html>
